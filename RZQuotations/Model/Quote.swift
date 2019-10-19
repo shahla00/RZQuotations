@@ -13,7 +13,7 @@ import CoreData
 extension Quote: Identifiable {
     static func allQuotes() -> NSFetchRequest<Quote> {
         let request: NSFetchRequest<Quote> = Quote.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "dateModified", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "dateModified", ascending: false)]
         return request
     }
 }

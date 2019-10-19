@@ -10,47 +10,58 @@ import SwiftUI
 import CoreData
 
 struct EditView: View {
-    @Environment(\.managedObjectContext) var managedObjectContext
-    @Environment(\.presentationMode) var presentationMode
-
-    var quote: Quote
-    
-    @State var updatedIdeaTitle: String = ""
-    @State var updatedIdeaDescription: String = ""
-    
-    var body: some View {
-        VStack {
-            VStack {
-                TextField("Idea title", text: $updatedIdeaTitle)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .onAppear {
-                      self.updatedIdeaTitle = self.quote.quote ?? ""
-                }
-        
-                TextField("Idea description", text: $updatedIdeaDescription)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .onAppear {
-                        self.updatedIdeaDescription = self.quote.author ?? ""
-                }
-            }
-            
-            VStack {
-                Button(action: ({
-                    self.quote.quote = self.updatedIdeaTitle
-                    self.quote.author = self.updatedIdeaDescription
-                    
-                    do {
-                        try self.managedObjectContext.save()
-                    } catch {
-                        print(error)
-                    }
-                    
-                    self.presentationMode.wrappedValue.dismiss()
-                })) {
-                    Text("Save")
-                }
-            .padding()
-            }
+  @Environment(\.managedObjectContext) var managedObjectContext
+  @Environment(\.presentationMode) var presentationMode
+  
+  var quote: Quote
+  
+  @State var quoteContent: String = ""
+  @State var book: String = ""
+  @State var author: String = ""
+  
+  var body: some View {
+    VStack {
+      VStack {
+        TextField("Quote", text: $quoteContent)
+          .textFieldStyle(RoundedBorderTextFieldStyle())
+          .onAppear {
+            self.quoteContent = self.quote.quote ?? ""
         }
+        
+        TextField("Book", text: $book)
+          .textFieldStyle(RoundedBorderTextFieldStyle())
+          .onAppear {
+            self.book = self.quote.book ?? ""
+        }
+        
+        TextField("Author", text: $author)
+          .textFieldStyle(RoundedBorderTextFieldStyle())
+          .onAppear {
+            self.author = self.quote.author ?? ""
+        }
+      }
+      
+      VStack {
+        Button(action: save) {
+          Text("Save")
+        }
+        .padding()
+      }
     }
+  }
+  
+  func save() {
+    self.quote.quote = self.quoteContent
+    self.quote.author = self.author
+    self.quote.book = self.book
+    self.quote.dateModified = Date()
+    
+    do {
+      try self.managedObjectContext.save()
+    } catch {
+      print(error)
+    }
+    
+    self.presentationMode.wrappedValue.dismiss()
+  }
 }

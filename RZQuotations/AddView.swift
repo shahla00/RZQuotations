@@ -12,18 +12,20 @@ struct AddView: View {
   @Environment(\.managedObjectContext) var managedObjectContext
   @Environment(\.presentationMode) var presentationMode
   
-  @State var updatedIdeaTitle: String = ""
-  @State var updatedIdeaDescription: String = ""
+  @State var quoteContent: String = ""
+  @State var book: String = ""
+  @State var author: String = ""
   
   var body: some View {
     VStack {
-      VStack {
-        TextField("Idea title", text: $updatedIdeaTitle)
-          .textFieldStyle(RoundedBorderTextFieldStyle())
-        
-        TextField("Idea description", text: $updatedIdeaDescription)
-          .textFieldStyle(RoundedBorderTextFieldStyle())
-      }
+      TextField("Quote", text: $quoteContent)
+        .textFieldStyle(RoundedBorderTextFieldStyle())
+      
+      TextField("Book", text: $book)
+        .textFieldStyle(RoundedBorderTextFieldStyle())
+      
+      TextField("Author", text: $author)
+        .textFieldStyle(RoundedBorderTextFieldStyle())
       
       VStack {
         Button(action: save) { Text("Save") }
@@ -35,8 +37,11 @@ struct AddView: View {
   private func save() {
     let quote = Quote(context: self.managedObjectContext)
     quote.id = UUID()
-    quote.quote = self.updatedIdeaTitle
-    quote.author = self.updatedIdeaDescription
+    quote.quote = self.quoteContent
+    quote.author = self.author
+    quote.book = self.book
+    quote.dateCreated = Date()
+    quote.dateModified = Date()
     
     do {
       try self.managedObjectContext.save()
