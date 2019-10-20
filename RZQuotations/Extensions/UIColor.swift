@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIColor {
-  static let lightBlue = UIColor(hex: "CCDBEE")
+  static let lightBlue = UIColor(hex: "E2D4B9")
   static let darkBlue = UIColor(hex: "233C67")
 }
 

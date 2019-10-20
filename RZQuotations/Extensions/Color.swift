@@ -9,7 +9,7 @@
 import SwiftUI
 
 extension Color {
-  static let lightBlue = Color(hex: "CCDBEE")
+  static let lightBlue = Color(hex: "E2D4B9")
   static let darkBlue = Color(hex: "233C67")
 }
 

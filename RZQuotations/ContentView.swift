@@ -17,31 +17,36 @@ struct ContentView: View {
   
   init() {
     UITableView.appearance().separatorStyle = .none
+    UITableView.appearance().backgroundColor = .clear
   }
   
   var body: some View {
-      NavigationView {
+    NavigationView {
+      ZStack {
+        Color.lightBlue
         List {
           ForEach(self.quotes) { quote in
             NavigationLink(destination: EditView(quote: quote), tag: quote.dateModified.hashValue, selection: self.$action) { EmptyView() }
             
             GeometryReader { geometry in
-            VStack(alignment: .center) {
-              Text(quote.quote ?? "")
-                .font(.title)
-                .frame(width: geometry.size.width)
-                .padding(.top)
-              
-              Spacer()
-              Text("By \(quote.author ?? "")")
-                .font(.body)
-                .padding(.bottom)
-            }
-            .background(Color.darkBlue)
-            .cornerRadius(10)
-            .foregroundColor(.white)
+              VStack(alignment: .center) {
+                Text(quote.quote ?? "")
+                  .font(.title)
+                  .frame(width: geometry.size.width)
+                  .padding(.top)
+                
+                Spacer()
+                Text("By \(quote.author ?? "")")
+                  .font(.body)
+                  .padding(.bottom)
+              }
+              .background(Color.darkBlue)
+              .cornerRadius(10)
+              .foregroundColor(.white)
+              .listRowBackground(Color.lightBlue)
             }
             .frame(height: 110)
+            .listRowBackground(Color.lightBlue)
             .onTapGesture {
               self.action = quote.dateModified.hashValue
             }
@@ -56,9 +61,11 @@ struct ContentView: View {
               print(error)
             }
           }
+          .listRowBackground(Color.lightBlue)
         }
-        .navigationBarTitle(Text("My Quotations"))
-        .navigationBarItems(trailing: NavigationLink(destination: AddView()) { Text("Add Quote")})
       }
+      .navigationBarTitle(Text("My Quotations"))
+      .navigationBarItems(trailing: NavigationLink(destination: AddView()) { Text("Add Quote")})
     }
+  }
 }

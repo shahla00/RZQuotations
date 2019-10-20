@@ -20,44 +20,47 @@ struct EditView: View {
   @State var author: String = ""
   
   var body: some View {
-    VStack {
-      HStack {
-        Text("Quote ")
-          .foregroundColor(.white)
-        TextField("Quote", text: $quoteContent)
-          .textFieldStyle(RoundedBorderTextFieldStyle())
-          .onAppear {
-            self.quoteContent = self.quote.quote ?? ""
+    ZStack {
+      Color.lightBlue
+      VStack {
+        HStack {
+          Text("Quote ")
+            .foregroundColor(.white)
+          TextField("Quote", text: $quoteContent)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .onAppear {
+              self.quoteContent = self.quote.quote ?? ""
           }
-      }
-      .padding()
-      
-      HStack {
-        Text("Book   ")
-          .foregroundColor(.white)
-        TextField("Book", text: $book)
-          .textFieldStyle(RoundedBorderTextFieldStyle())
-          .onAppear {
-            self.book = self.quote.book ?? ""
+        }
+        .padding()
+        
+        HStack {
+          Text("Book   ")
+            .foregroundColor(.white)
+          TextField("Book", text: $book)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .onAppear {
+              self.book = self.quote.book ?? ""
           }
-      }
-      .padding()
-      
-      HStack {
-        Text("Author")
-          .foregroundColor(.white)
-        TextField("Author", text: $author)
-          .textFieldStyle(RoundedBorderTextFieldStyle())
-          .onAppear {
-            self.author = self.quote.author ?? ""
+        }
+        .padding()
+        
+        HStack {
+          Text("Author")
+            .foregroundColor(.white)
+          TextField("Author", text: $author)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .onAppear {
+              self.author = self.quote.author ?? ""
           }
+        }
+        .padding()
       }
+      .cornerRadius(10)
+      .background(Color.darkBlue)
       .padding()
+      .navigationBarItems(trailing: Button(action: save) { Text("Save") })
     }
-    .cornerRadius(10)
-    .background(Color.darkBlue)
-    .padding()
-    .navigationBarItems(trailing: Button(action: save) { Text("Save") })
   }
   
   func save() {
