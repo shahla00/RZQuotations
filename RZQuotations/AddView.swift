@@ -18,15 +18,33 @@ struct AddView: View {
   
   var body: some View {
     VStack {
-      TextField("Quote", text: $quoteContent)
-        .textFieldStyle(RoundedBorderTextFieldStyle())
+      HStack {
+        Text("Quote ")
+          .foregroundColor(.white)
+        TextField("Quote", text: $quoteContent)
+          .textFieldStyle(RoundedBorderTextFieldStyle())
+      }
+      .padding()
       
-      TextField("Book", text: $book)
-        .textFieldStyle(RoundedBorderTextFieldStyle())
+      HStack {
+        Text("Book   ")
+          .foregroundColor(.white)
+        TextField("Book", text: $book)
+          .textFieldStyle(RoundedBorderTextFieldStyle())
+      }
+      .padding()
       
-      TextField("Author", text: $author)
-        .textFieldStyle(RoundedBorderTextFieldStyle())
+      HStack {
+        Text("Author")
+          .foregroundColor(.white)
+        TextField("Author", text: $author)
+          .textFieldStyle(RoundedBorderTextFieldStyle())
+      }
+      .padding()
     }
+    .cornerRadius(10)
+    .background(Color.darkBlue)
+    .padding()
     .navigationBarItems(trailing: Button(action: save) { Text("Save") })
   }
   

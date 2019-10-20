@@ -21,7 +21,6 @@ struct ContentView: View {
   
   var body: some View {
       NavigationView {
-        
         List {
           ForEach(self.quotes) { quote in
             NavigationLink(destination: EditView(quote: quote), tag: quote.dateModified.hashValue, selection: self.$action) { EmptyView() }

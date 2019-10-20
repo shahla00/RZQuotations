@@ -13,7 +13,6 @@
 		C1DDA5D4235BB29E002F07B1 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDA5D3235BB29E002F07B1 /* AddView.swift */; };
 		C1DDA5D7235BBB2D002F07B1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDA5D6235BBB2D002F07B1 /* Color.swift */; };
 		C1DDA5DD235CEDD6002F07B1 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDA5DC235CEDD6002F07B1 /* UIColor.swift */; };
-		C1DDA5DF235CF678002F07B1 /* QuoteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDA5DE235CF678002F07B1 /* QuoteCard.swift */; };
 		C1E95023235B7E2D00C4AF00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E95022235B7E2D00C4AF00 /* AppDelegate.swift */; };
 		C1E95025235B7E2D00C4AF00 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E95024235B7E2D00C4AF00 /* SceneDelegate.swift */; };
 		C1E95028235B7E2D00C4AF00 /* RZQuotations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C1E95026235B7E2D00C4AF00 /* RZQuotations.xcdatamodeld */; };
@@ -56,7 +55,6 @@
 		C1DDA5D3235BB29E002F07B1 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		C1DDA5D6235BBB2D002F07B1 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		C1DDA5DC235CEDD6002F07B1 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		C1DDA5DE235CF678002F07B1 /* QuoteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCard.swift; sourceTree = "<group>"; };
 		C1E9501F235B7E2D00C4AF00 /* RZQuotations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RZQuotations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1E95022235B7E2D00C4AF00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1E95024235B7E2D00C4AF00 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -163,7 +161,6 @@
 				C1E95022235B7E2D00C4AF00 /* AppDelegate.swift */,
 				C1E95029235B7E2D00C4AF00 /* ContentView.swift */,
 				C1DDA5CB235BA6F4002F07B1 /* EditView.swift */,
-				C1DDA5DE235CF678002F07B1 /* QuoteCard.swift */,
 				C1E95024235B7E2D00C4AF00 /* SceneDelegate.swift */,
 				C1E9502B235B7E2D00C4AF00 /* Assets.xcassets */,
 				C1E95030235B7E2D00C4AF00 /* LaunchScreen.storyboard */,
@@ -420,7 +417,6 @@
 				C1E95023235B7E2D00C4AF00 /* AppDelegate.swift in Sources */,
 				C1E95025235B7E2D00C4AF00 /* SceneDelegate.swift in Sources */,
 				C1DDA5CC235BA6F4002F07B1 /* EditView.swift in Sources */,
-				C1DDA5DF235CF678002F07B1 /* QuoteCard.swift in Sources */,
 				C1E9502A235B7E2D00C4AF00 /* ContentView.swift in Sources */,
 				C1DDA5D7235BBB2D002F07B1 /* Color.swift in Sources */,
 				C1DDA5C8235BA4D6002F07B1 /* Quote.swift in Sources */,
