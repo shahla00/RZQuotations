@@ -20,44 +20,46 @@ struct ContentView: View {
   }
   
   var body: some View {
-    NavigationView {
-      List {
-        ForEach(self.quotes.indices) { index in
-          NavigationLink(destination: EditView(quote: self.quotes[index]), tag: 1, selection: self.$action) { EmptyView() }
-          GeometryReader { geometry in
+      NavigationView {
+        
+        List {
+          ForEach(self.quotes) { quote in
+            NavigationLink(destination: EditView(quote: quote), tag: quote.dateModified.hashValue, selection: self.$action) { EmptyView() }
+            
+            GeometryReader { geometry in
             VStack(alignment: .center) {
-              Text(self.quotes[index].quote ?? "")
+              Text(quote.quote ?? "")
                 .font(.title)
                 .frame(width: geometry.size.width)
                 .padding(.top)
               
               Spacer()
-              Text("By \(self.quotes[index].author ?? "")")
+              Text("By \(quote.author ?? "")")
                 .font(.body)
                 .padding(.bottom)
             }
             .background(Color.darkBlue)
             .cornerRadius(10)
             .foregroundColor(.white)
+            }
+            .frame(height: 110)
+            .onTapGesture {
+              self.action = quote.dateModified.hashValue
+            }
           }
-          .frame(height: 110)
-          .onTapGesture {
-            self.action = 1
+          .onDelete { (indexSet) in
+            let quote = self.quotes[indexSet.first!]
+            self.managedObjectContext.delete(quote)
+            
+            do {
+              try self.managedObjectContext.save()
+            } catch {
+              print(error)
+            }
           }
         }
-        .onDelete { (indexSet) in
-          let quote = self.quotes[indexSet.first!]
-          self.managedObjectContext.delete(quote)
-          
-          do {
-            try self.managedObjectContext.save()
-          } catch {
-            print(error)
-          }
-        }
+        .navigationBarTitle(Text("My Quotations"))
+        .navigationBarItems(trailing: NavigationLink(destination: AddView()) { Text("Add Quote")})
       }
-      .navigationBarTitle(Text("My Quotations"))
-      .navigationBarItems(trailing: NavigationLink(destination: AddView()) { Text("Add Quote")})
     }
-  }
 }
