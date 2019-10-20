@@ -26,12 +26,8 @@ struct AddView: View {
       
       TextField("Author", text: $author)
         .textFieldStyle(RoundedBorderTextFieldStyle())
-      
-      VStack {
-        Button(action: save) { Text("Save") }
-          .padding()
-      }
     }
+    .navigationBarItems(trailing: Button(action: save) { Text("Save") })
   }
   
   private func save() {

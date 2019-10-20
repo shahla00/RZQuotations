@@ -40,13 +40,7 @@ struct EditView: View {
             self.author = self.quote.author ?? ""
         }
       }
-      
-      VStack {
-        Button(action: save) {
-          Text("Save")
-        }
-        .padding()
-      }
+      .navigationBarItems(trailing: Button(action: save) { Text("Save") })
     }
   }
   

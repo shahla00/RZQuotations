@@ -13,28 +13,47 @@ struct ContentView: View {
   @Environment(\.managedObjectContext) var managedObjectContext
   @FetchRequest(fetchRequest: Quote.allQuotes()) var quotes: FetchedResults<Quote>
   
+  @State private var action: Int? = 0
+  
+  init() {
+    UITableView.appearance().separatorStyle = .none
+  }
+  
   var body: some View {
     NavigationView {
       List {
-        ForEach(self.quotes) { quote in
-            NavigationLink(destination: EditView(quote: quote)) {
-                VStack(alignment: .leading) {
-                    Text(quote.quote ?? "")
-                        .font(.headline)
-                    Text(quote.author ?? "")
-                        .font(.subheadline)
-                }
+        ForEach(self.quotes.indices) { index in
+          NavigationLink(destination: EditView(quote: self.quotes[index]), tag: 1, selection: self.$action) { EmptyView() }
+          GeometryReader { geometry in
+            VStack(alignment: .center) {
+              Text(self.quotes[index].quote ?? "")
+                .font(.title)
+                .frame(width: geometry.size.width)
+                .padding(.top)
+              
+              Spacer()
+              Text("By \(self.quotes[index].author ?? "")")
+                .font(.body)
+                .padding(.bottom)
             }
+            .background(Color.darkBlue)
+            .cornerRadius(10)
+            .foregroundColor(.white)
+          }
+          .frame(height: 110)
+          .onTapGesture {
+            self.action = 1
+          }
         }
         .onDelete { (indexSet) in
-            let quote = self.quotes[indexSet.first!]
-            self.managedObjectContext.delete(quote)
-            
-            do {
-                try self.managedObjectContext.save()
-            } catch {
-                print(error)
-            }
+          let quote = self.quotes[indexSet.first!]
+          self.managedObjectContext.delete(quote)
+          
+          do {
+            try self.managedObjectContext.save()
+          } catch {
+            print(error)
+          }
         }
       }
       .navigationBarTitle(Text("My Quotations"))
